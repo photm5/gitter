@@ -43,6 +43,7 @@ class Server:
         self.message_timer = utc_timestamp ()
 
         self.messages = push_analyzer.utils.observer.Signal ()
+        self.connected = push_analyzer.utils.observer.Signal ()
         self.socket = socket.socket ()
         self.connect ()
         self.loop_thread = threading.Thread ( target = self.loop )
@@ -83,9 +84,6 @@ class Server:
         accepted = False
         while not accepted:
             for line in self.read_lines ( timeout = None ):
-                if line.startswith ( 'PING' ):
-                    self.send_message ( line.replace ( 'PING', 'PONG' ) )
-
                 if ':Nickname is already in use' in line:
                     print ( 'Name already taken. Trying again in 2 minutes.' )
                     time.sleep ( 120 )
@@ -96,6 +94,7 @@ class Server:
                     print ( "Connection accepted!" )
                     accepted = True
                     break
+        self.connected ()
 
     def disconnect ( self ):
         self.active = False
@@ -129,6 +128,7 @@ class Server:
                     print ( "Oh noes, %s sent some magic characters we can't encode!" % self.domain )
             return readlines
         except socket.timeout:
-            print ( "Connection to %s lost. reconnecting." % self.domain )
+            print ( "Connection to %s lost. will reconnect in 10 seconds." % self.domain )
+            time.sleep ( 10 )
             self.connect ()
             return self.read_lines ( timeout = timeout )
