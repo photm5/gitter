@@ -7,5 +7,5 @@ plugin_manager.register ()
 poll_interval = 20
 work_dir = home_directory + '/gitter/'
 urls = [
-    'https://github.com/firecoders/gitter.git',
+    'https://github.com/shak-mar/gitter.git',
 ]
