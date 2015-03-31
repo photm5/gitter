@@ -33,6 +33,7 @@ class Channel:
         self.messages = push_analyzer.utils.observer.Signal ()
         self.server.messages.subscribe ( self.handle_message )
 
+        self.server.connected.subscribe ( self.join )
         self.join ()
 
     def __del__ ( self ):
