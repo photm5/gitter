@@ -1,0 +1,3 @@
+[submodule "push_analyzer"]
+	path = push_analyzer
+	url = https://github.com/shak-mar/push_analyzer.git

@@ -4,15 +4,12 @@ An IRC-bot for broadcasting changes to git repositories.
 
 This project uses the [push analyzer][1] library.
 
-[1]: https://github.com/firecoders/push_analyzer
+[1]: https://github.com/shak-mar/push_analyzer
 
-If you want to use this project:
+Make sure to recursively clone (because of submodules):
 
 ```
-git clone https://github.com/firecoders/gitter.git
-cd gitter
-git clone https://github.com/firecoders/push_analyzer.git
-./main.py
+git clone https://github.com/shak-mar/gitter.git --recursive
 ```
 
 You can edit `settings.py` to your needs.
